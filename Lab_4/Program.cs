@@ -1,4 +1,4 @@
-﻿class Program
+class Program
 {
     static void Main(string[] args)
     {
@@ -12,9 +12,19 @@
             File.WriteAllText(fileName, text);
             Console.WriteLine();
 
+
             char[] fileContent = File.ReadAllText(fileName).ToLower().ToCharArray();
+            List<char> listfile = File.ReadAllText(fileName).ToLower().ToList();
+
             int vowelsCount = CountVowels(fileContent);
             int consonantsCount = CountConsonants(fileContent);
+            Console.WriteLine("Array: ");
+            Console.WriteLine("Кількість голосних літер: " + vowelsCount);
+            Console.WriteLine("Кількість приголосних літер: " + consonantsCount);
+
+            vowelsCount = CountVowels(listfile);
+            consonantsCount = CountConsonants(listfile);
+            Console.WriteLine("List: ");
             Console.WriteLine("Кількість голосних літер: " + vowelsCount);
             Console.WriteLine("Кількість приголосних літер: " + consonantsCount);
 
@@ -40,6 +50,11 @@
         return count;
     }
 
+    static int CountVowels(List<char> charList)
+    {
+        return CountVowels(charList.ToArray());
+    }
+
     static int CountConsonants(char[] charArray)
     {
         List<char> consonants = new List<char>() { 'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z' };
@@ -52,5 +67,10 @@
             }
         }
         return count;
+    }
+
+    static int CountConsonants(List<char> charList)
+    {
+        return CountConsonants(charList.ToArray());
     }
 }
